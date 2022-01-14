@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/qrcanvas@3"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <title>
+    <%= name %>
+  </title>
+</head>
+
+<body>
+
+  <div class="col-sm">
+    <div class="card animated flipInY">
+      <div class="card-header <%= color %> text-white text-center">
+        <h3>
+          <%= cabeza %>
+        </h3>
+      </div>
+    </div>
+
+    <br />
+    <br />
+
+    <div class="container">
+      <div class="row justify-content-md-center">
+
+        <div id="cargando" class="spinner-border spinner-border-sm text-success" style="width: 6rem; height: 6rem;"
+          role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+
+        <div id="qrcode"></div>
+      </div>
+    </div>
+
+    <br />
+
+
+    <input type="hidden" id="auth" value="<%= auth %>">
+    <input type="hidden" id="id" value="<%= id %>">
+
+    <script>
+      var socket = io.connect({
+        forceNew: true, query: {
+          "auth": document.getElementById("auth").value,
+          "id": document.getElementById("id").value,
+        }
+      });
+      socket.on("connect", () => {
+        console.log('a user connected');
+      });
+      socket.on('qr', (qr) => {
+        var x = document.getElementById("cargando");
+        x.style.display = "none";
+        document.getElementById("qrcode").innerHTML = null;
+        const canvas = qrcanvas.qrcanvas({ data: qr });
+        document.getElementById('qrcode').appendChild(canvas);
+      });
+    </script>
+    
+    <form action="">
+      <div class="form-group">
+        <button class="btn btn-primary btn-block">
+          <%= pie %>
+        </button>
+      </div>
+    </form>
+  </div>
+  </div>
+  </div>
+</body>
+
+</html>

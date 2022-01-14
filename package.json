@@ -1,0 +1,22 @@
+{
+    "name": "check",
+    "description": "Un Producto de Planck",
+    "license": "ISC",
+    "version": "0.1.0",
+    "author": "Juan Pablo Guaman Rodriguez",
+    "contributors": [],
+    "dependencies": {
+        "multer": "^1.4.2",
+        "cookie-parser": "^1.4.5",
+        "ejs": "^3.1.6",
+        "express": "^4.17.1",
+        "express-ip": "^1.0.4",
+        "file-type": "^16.3.0",
+        "ip": "^1.1.5",
+        "mysql": "^2.18.1",
+        "nodemailer": "^6.6.0",
+        "request": "^2.88.2",
+        "socket.io": "^4.2.0",
+        "whatsapp-web.js": "^1.15.3"
+    }
+}
